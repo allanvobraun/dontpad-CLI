@@ -16,12 +16,13 @@ const options = yargs.demandCommand(1).option("r", {
   type: "string"
 }).argv;
 
-const user_name = os.userInfo().username;
+const user_name = os.userInfo().username; // nome do usuario do sistema
 const text = options._[0]; // pega o argumento
 const greeting = chalk.white.bold("Inserindo texto....");
 
 console.log(greeting);
 
+// checa se o argumento foi passado
 if (typeof options.repository === 'undefined') {
     repository = user_name;
 
@@ -31,6 +32,7 @@ if (typeof options.repository === 'undefined') {
 
 var dontpad = new DontPad(repository);
 
+// substitui todo o texto da pagina do dontpad
 dontpad.write(text).then(res => {
   console.log(res.config.url);
 });
