@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+//libs
 const chalk = require("chalk"); // text styling lib
 const yargs = require("yargs"); // get cli args
 const boxen = require('boxen'); // prompt box
@@ -7,10 +8,23 @@ const Confirm = require('prompt-confirm'); // confirmation lib
 const os = require("os");
 const clipboardy = require('clipboardy');
 const root = require("app-root-path");
+const fs = require('fs');
+//
+
+
+const user_name = os.userInfo().username; // os user name
+const env = process.env;
+const language = env.LANG || env.LANGUAGE || env.LC_ALL || env.LC_MESSAGES;
+console.log(language);
+
+// string translation file
+let rawdata = fs.readFileSync(root + '/app/strings.json');
+let strings = JSON.parse(rawdata);
+
+let t_string = is_ptbr(language) ? strings.pt_br : strings.en_us;
+//
 
 const DontPad = require(root + "/app/DontPad"); // dontpad class
-const user_name = os.userInfo().username; // os user name
-
 
 const options = yargs
 .scriptName("dontpad").usage("$0 <cmd> [args] or $0 'text' [args]")
@@ -52,7 +66,7 @@ dontpad.separator = `\n${options.separator}\n`; //separador between each msg
 
 if (command === 'get') { // handles get command
   
-  boldMsg(`Lendo do repositório 'dontpad.com/${options.repository}'...`);
+  boldMsg(`${t_string.reading} 'dontpad.com/${options.repository}'...`);
   dontpad.read().then(res => {
     console.log(boxen(res, {padding: 1, float:'center', borderStyle: 'round'}));
     if (options.copy) copyLastLine(res);
@@ -62,13 +76,13 @@ if (command === 'get') { // handles get command
 
   if (options.overwrite) { //overwrite option
 
-    const prompt = new Confirm('Tem certeza que deseja sobreescrever todo o texto do repositório?');
+    const prompt = new Confirm(t_string.ask_overwrite);
     prompt.ask(answer => { // ask user confirmation
 
       if (answer) { // if yes
-        boldMsg('Sobreescrevendo o texto...');
+        boldMsg(t_string.overwrite);
         dontpad.write(command).then(res => {
-          sucessMsg('sucesso!!!');
+          sucessMsg(t_string.success);
           console.log(res.config.url);
         });
       } else { // else exit
@@ -79,9 +93,9 @@ if (command === 'get') { // handles get command
 
   } else { // normal append
 
-    boldMsg('Inserindo texto...');
+    boldMsg(t_string.inserting);
     dontpad.append(command).then(res => {
-      sucessMsg('sucesso!!!');
+      sucessMsg(t_string.success);
       console.log(res.config.url);
     });
 
@@ -103,8 +117,12 @@ function copyLastLine(text) {
   const regex = /(.*$)/g; 
   const last_line = regex.exec(text);
   clipboardy.writeSync(last_line[1]);
-  boldMsg(`"${last_line[1]}" copied to clipboard`)
-  
-  
+  boldMsg(`"${last_line[1]}" ${t_string.clipboard}`)
+
+}
+
+function is_ptbr(lenguage) {
+  const regex = /(pt)|(br)/gi;
+  return regex.test(lenguage);
 }
 
