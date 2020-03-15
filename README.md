@@ -11,7 +11,7 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">YOUR_TITLE</h3>
+  <h3 align="center">Dontpad CLI</h3>
 
   <p align="center">
     A command line interface for <a href="http://dontpad.com">dontpad.com</a>
@@ -24,8 +24,8 @@
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
+- [Table of Contents](#table-of-contents)
 - [About The Project](#about-the-project)
-  - [Built With](#built-with)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
@@ -41,29 +41,19 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<img src="https://i.imgur.com/hr6rQGn.png"> 
 
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`github_username`, `repo`, `twitter_handle`, `email`
-
-
-### Built With
-
-* []()
-* []()
-* []()
-
-
+Dontpad CLI is a command line interface for writing and sharing notes direct from your console.
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow these simple steps.
+To get yourself Dontpad CLI, follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+NodeJS and npm are required to install Dontpad CLI.  
+You download node and npm [here](https://nodejs.org/en/)
 * npm
 ```sh
 npm install npm@latest -g
