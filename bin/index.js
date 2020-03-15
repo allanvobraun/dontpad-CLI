@@ -2,6 +2,7 @@
 
 const chalk = require("chalk"); // biblioteca de estilzação de texto
 const yargs = require("yargs"); // pega args do cli
+const boxen = require('boxen');
 const os = require("os");
 const root = require("app-root-path");
 
@@ -20,40 +21,44 @@ const options = yargs
   describe: "Repository name in dontpad. \nExample: dontpad.com/repository",
   type: "string",
   default: user_name
-}).argv;
+})
+.option("s", {
+  alias: "separator",
+  describe: "Add a custom separator betwen appends",
+  type: "string",
+  default: ""
+})
+.argv;
 
-
-
-// console.log(options);
-
-//const batata = yargs.scriptName("pirate-parser").usage('batatata').argv;
 
 const command = options._[0]; // pega o argumento sem parametro
 
-
-
 let dontpad = new DontPad(options.repository);
-
-
+dontpad.separator = `\n${options.separator}\n`;
 
 if (command === 'get') {
-  boldMsg('Lendo do repositório');
+  boldMsg(`Lendo do repositório 'dontpad.com/${options.repository}'...`);
     dontpad.read().then(res => {
-    console.log(res);
+    console.log(boxen(res, {padding: 1, float:'center', borderStyle: 'round'}));
   });  
   
 } else {
   boldMsg('Inserindo texto...');
-  dontpad.write(command).then(res => {
+  dontpad.append(command).then(res => {
+    sucessMsg('sucesso!!!');
     console.log(res.config.url);
   });
   
 }
 
-
 function boldMsg(msg) {
   const greeting = chalk.white.bold(msg);
   console.log(greeting);
+}
+
+function sucessMsg(msg) {
+  const text = chalk.black.bgGreen(msg);
+  console.log(text);
 }
 
 
