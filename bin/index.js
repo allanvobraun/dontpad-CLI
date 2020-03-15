@@ -5,34 +5,16 @@ const yargs = require("yargs"); // pega args do cli
 const os = require("os");
 const root = require("app-root-path");
 
-
-class Main {
-  constructor(params) {
-  const DontPad = require(root + "/app/DontPad"); // classe do dontpad
-  const user_name = os.userInfo().username; // nome do usuario do sistema
-
-  read(argv) {
-    dontpad.read().then(res => {
-    console.log(res);
-    
-  });
+const DontPad = require(root + "/app/DontPad"); // classe do dontpad
+const user_name = os.userInfo().username; // nome do usuario do sistema
 
 
-    
-  }
-}
 
-
-function 
-
-  
-  
-}
 // requer 1 argumento sem parametro
 // e 1 argumento -r
 const options = yargs
 .scriptName("dontpad").usage('$0 <cmd> [args]')
-.command('get', 'Read content from a repository', () => {}, read)
+.command('get', 'Read content from a repository')
 .option("r", {
   alias: "repository",
   describe: "Repository name in dontpad. \nExample: dontpad.com/repository",
@@ -46,23 +28,32 @@ const options = yargs
 
 //const batata = yargs.scriptName("pirate-parser").usage('batatata').argv;
 
-const text = options._[0]; // pega o argumento sem parametro
-const greeting = chalk.white.bold("Inserindo texto....");
-console.log(greeting);
+const command = options._[0]; // pega o argumento sem parametro
 
 
-var dontpad = new DontPad(options.repository);
 
-if (text) {
-  dontpad.write(text).then(res => {
+let dontpad = new DontPad(options.repository);
+
+
+
+if (command === 'get') {
+  boldMsg('Lendo do repositório');
+    dontpad.read().then(res => {
+    console.log(res);
+  });  
+  
+} else {
+  boldMsg('Inserindo texto...');
+  dontpad.write(command).then(res => {
     console.log(res.config.url);
   });
-} 
-// substitui todo o texto da pagina do dontpad
-
-
-// dontpad.read().then(res => {
-//   console.log(res);
   
-// });
+}
+
+
+function boldMsg(msg) {
+  const greeting = chalk.white.bold(msg);
+  console.log(greeting);
+}
+
 
