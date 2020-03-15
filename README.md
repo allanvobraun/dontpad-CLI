@@ -53,51 +53,35 @@ To get yourself Dontpad CLI, follow these simple steps.
 ### Prerequisites
 
 NodeJS and npm are required to install Dontpad CLI.  
-You download node and npm [here](https://nodejs.org/en/)
-* npm
+You download node and npm [here](https://nodejs.org/en/).
+
+After installation run:
+
 ```sh
 npm install npm@latest -g
 ```
-
+For update npm.
 ### Installation
  
-1. Clone the repo
+1. Install the package
 ```sh
-git clone https://github.com/github_username/repo.git
+npm install --global dontpad-cli
 ```
-2. Install NPM packages
+2. Check the installation
 ```sh
-npm install
+dontpad --version
 ```
-
+You should see the version on console.
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+To read all the commands and options simple run:
+```sh
+dontpad --help
+```
 
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-See the [open issues](https://github.com/github_username/repo/issues) for a list of proposed features (and known issues).
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 
 
@@ -114,15 +98,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
 
 Project Link: [https://github.com/github_username/repo](https://github.com/github_username/repo)
-
-
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-
-* []()
-* []()
-* []()
 
 
 
