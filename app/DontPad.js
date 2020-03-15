@@ -28,9 +28,9 @@ module.exports = class DontPad {
         let response = await axios(this.url).catch((err) => console.log(err));
         const html = response.data;
 
-        const $ = cheerio.load(html);
+        const $ = cheerio.load(html, { decodeEntities: true });
         const textarea = $('#text');
-        return textarea.html();
+        return textarea.text();
     }
 
     async append(text) {
