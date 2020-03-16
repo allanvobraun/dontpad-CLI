@@ -30,11 +30,9 @@
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
-- [Commands:](#commands)
-- [| get     | Read information from a repository and prints on terminal |  dontpad get [args]   |](#get--read-information-from-a-repository-and-prints-on-terminal--dontpad-get-args)
-- [General options:](#general-options)
 - [License](#license)
 - [Contact](#contact)
+- [Special thanks](#special-thanks)
 
 
 
@@ -112,12 +110,16 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
+Allan Braun - allanvobraun@gmail.com
 
-Project Link: [https://github.com/github_username/repo](https://github.com/github_username/repo)
+Project Link: [https://github.com/allanvobraun/dontpad-CLI](https://github.com/allanvobraun/dontpad-CLI)
 
+NPM Link: [https://www.npmjs.com/package/dontpad-cli](https://www.npmjs.com/package/dontpad-cli)
 
-
+## Special thanks
+* Mum
+* [Matheus Bertho](https://github.com/Berthot) for features ideas
+* [Willian Ferreira](https://github.com/willianhf) for js help
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
