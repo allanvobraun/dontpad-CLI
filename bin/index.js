@@ -14,8 +14,7 @@ const helper = require(root + "/app/helperFunctions");
 // env and user variables
 const user_name = os.userInfo().username; // os user name
 const env = process.env;
-//const language = env.LANG || env.LANGUAGE || env.LC_ALL || env.LC_MESSAGES;
-const language = "en"
+const language = env.LANG || env.LANGUAGE || env.LC_ALL || env.LC_MESSAGES;
 // string translation file
 let rawdata = fs.readFileSync(root + '/app/strings.json');
 let strings = JSON.parse(rawdata);
