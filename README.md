@@ -30,6 +30,9 @@
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
+- [Commands:](#commands)
+- [| get     | Read information from a repository and prints on terminal |  dontpad get [args]   |](#get--read-information-from-a-repository-and-prints-on-terminal--dontpad-get-args)
+- [General options:](#general-options)
 - [License](#license)
 - [Contact](#contact)
 
@@ -80,9 +83,15 @@ To read all the commands and options simple run:
 ```sh
 dontpad --help
 ```
+Commands:
+----
+| Command | Description                                               | Usage                 |
+|---------|-----------------------------------------------------------|-----------------------|
+|         | Empty command, append text to a repository                | dontpad 'text' [args] |
+| get     | Read information from a repository and prints on terminal |  dontpad get [args]   |
 ----
 General options:
-
+----
 | Option             | Description                                                                              | Default          |
 |--------------------|------------------------------------------------------------------------------------------|------------------|
 | --help             | Show help                                                                                | None             |
@@ -90,7 +99,7 @@ General options:
 | -r or --repository | Specify the dontpad repository                                                           | System user name |
 | -s or --separator  | Specify a string separator between appends                                               | \n               |
 | -o or --overwrite  | Overwrite all content in the repository                                                  | false            |
-| -c, --copy         | Copy the last line from the repository to the clipboard (only disponible in GET command) | false            |
+| -c or --copy         | Copy the last line from the repository to the clipboard (only disponible with get command) | false            |
 
 
 <!-- LICENSE -->
