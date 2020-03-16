@@ -30,11 +30,8 @@
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
-- [Roadmap](#roadmap)
-- [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
-- [Acknowledgements](#acknowledgements)
 
 
 
@@ -76,13 +73,24 @@ You should see the version on console.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+<a href="https://imgur.com/1iGNrbw"><img src="https://i.imgur.com/1iGNrbw.gif" title="source: imgur.com" /></a>
 
+----------
 To read all the commands and options simple run:
 ```sh
 dontpad --help
 ```
+----
+General options:
 
-
+| Option             | Description                                                                              | Default          |
+|--------------------|------------------------------------------------------------------------------------------|------------------|
+| --help             | Show help                                                                                | None             |
+| --version          | Show version                                                                             | None             |
+| -r or --repository | Specify the dontpad repository                                                           | System user name |
+| -s or --separator  | Specify a string separator between appends                                               | \n               |
+| -o or --overwrite  | Overwrite all content in the repository                                                  | false            |
+| -c, --copy         | Copy the last line from the repository to the clipboard (only disponible in GET command) | false            |
 
 
 <!-- LICENSE -->
