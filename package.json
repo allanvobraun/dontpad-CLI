@@ -1,6 +1,6 @@
 {
   "name": "dontpad-cli",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Command line interface for use dontpad.com",
   "main": "./bin/index.js",
   "scripts": {
