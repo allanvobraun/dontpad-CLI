@@ -1,9 +1,8 @@
-
 const axios = require('axios');
 const cheerio = require('cheerio');
 
 module.exports = class DontPad {
-    //propriedades e funções da classe aqui
+
     constructor(repositorio) {
         this.repositorio = repositorio;
         this.url = `http://dontpad.com/${this.repositorio}`
@@ -29,9 +28,9 @@ module.exports = class DontPad {
         let response = await axios(this.url).catch((err) => console.log(err));
         const html = response.data;
 
-        const $ = cheerio.load(html);
+        const $ = cheerio.load(html, { decodeEntities: true });
         const textarea = $('#text');
-        return textarea.html();
+        return textarea.text();
     }
 
     async append(text) {

@@ -1,0 +1,19 @@
+{
+    "pt_br": {
+        "reading":"Lendo do repositório:",
+        "ask_overwrite":"Você tem certeza que deseja sobrescrever todo o texto do repositório?",
+        "overwrite":"Sobrescrever o texto...",    
+        "success":"Sucesso!!!",
+        "inserting":"Inserindo o texto...",
+        "clipboard":"Copiado para a área de transferência"
+
+    },
+    "en_us": {
+        "reading":"Reading from repository:",
+        "ask_overwrite":"Are you sure you want to overwrite the entire repository text?",
+        "overwrite":"Overwriting the text...",    
+        "success":"Success!!!",
+        "inserting":"Inserting the text...",
+        "clipboard":"Copied to clipboard"
+    }
+}

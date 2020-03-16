@@ -1,22 +1,39 @@
 #!/usr/bin/env node
 
-const chalk = require("chalk"); // biblioteca de estilzação de texto
-const yargs = require("yargs"); // pega args do cli
-const boxen = require('boxen'); //caixa no prompt
-const Confirm = require('prompt-confirm');
+//libs
+const yargs = require("yargs"); // get cli args
+const boxen = require('boxen'); // prompt box
+const Confirm = require('prompt-confirm'); // confirmation lib
 const os = require("os");
 const root = require("app-root-path");
+const fs = require('fs');
+const helper = require(root + "/app/helperFunctions"); 
 
-const DontPad = require(root + "/app/DontPad"); // classe do dontpad
-const user_name = os.userInfo().username; // nome do usuario do sistema
+//
 
+// env and user variables
+const user_name = os.userInfo().username; // os user name
+const env = process.env;
+const language = env.LANG || env.LANGUAGE || env.LC_ALL || env.LC_MESSAGES;
+// string translation file
+let rawdata = fs.readFileSync(root + '/app/strings.json');
+let strings = JSON.parse(rawdata);
+let t_string = helper.is_ptbr(language) ? strings.pt_br : strings.en_us;
+//
 
+const DontPad = require(root + "/app/DontPad"); // dontpad class
 
-// requer 1 argumento sem parametro
-// e 1 argumento -r
 const options = yargs
 .scriptName("dontpad").usage("$0 <cmd> [args] or $0 'text' [args]")
-.command('get', 'Read content from a repository')
+.command('get', 'Read content from a repository', yargs => {
+  return yargs.option('c', {
+    alias: 'copy',
+    describe:'Copy the last line from the repository to the clipboard',
+    boolean: true,
+    type: 'boolean',
+    default: false
+  })
+})
 .option("r", {
   alias: "repository",
   describe: "Repository name in dontpad. \nExample: dontpad.com/repository",
@@ -45,22 +62,28 @@ let dontpad = new DontPad(options.repository);
 dontpad.separator = `\n${options.separator}\n`; //separador between each msg
 
 if (command === 'get') { // handles get command
-  boldMsg(`Lendo do repositório 'dontpad.com/${options.repository}'...`);
-    dontpad.read().then(res => {
+  
+  helper.boldMsg(`${t_string.reading} 'dontpad.com/${options.repository}'...`);
+  dontpad.read().then(res => {
     console.log(boxen(res, {padding: 1, float:'center', borderStyle: 'round'}));
+
+    if (options.copy) {
+      const line = helper.copyLastLine(res);
+      helper.boldMsg(`"${line}" ${t_string.clipboard}`);
+    }
   });  
   
 } else { // no command 
 
   if (options.overwrite) { //overwrite option
 
-    const prompt = new Confirm('Tem certeza que deseja sobreescrever todo o texto do repositório?');
+    const prompt = new Confirm(t_string.ask_overwrite);
     prompt.ask(answer => { // ask user confirmation
 
-      if (answer) { // if y
-        boldMsg('Sobreescrevendo o texto...');
+      if (answer) { // if yes
+        helper.boldMsg(t_string.overwrite);
         dontpad.write(command).then(res => {
-          sucessMsg('sucesso!!!');
+          helper.sucessMsg(t_string.success);
           console.log(res.config.url);
         });
       } else { // else exit
@@ -71,24 +94,13 @@ if (command === 'get') { // handles get command
 
   } else { // normal append
 
-    boldMsg('Inserindo texto...');
+    helper.boldMsg(t_string.inserting);
     dontpad.append(command).then(res => {
-      sucessMsg('sucesso!!!');
+      helper.sucessMsg(t_string.success);
       console.log(res.config.url);
     });
 
   }
   
 }
-
-function boldMsg(msg) {
-  const greeting = chalk.white.bold(msg);
-  console.log(greeting);
-}
-
-function sucessMsg(msg) {
-  const text = chalk.black.bgGreen(msg);
-  console.log(text);
-}
-
 
